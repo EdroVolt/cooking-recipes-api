@@ -2,18 +2,18 @@ import mongoose from 'mongoose';
 import { BaseRepo } from '../repositories/Base.repo';
 
 export type BaseFilter = {
-  page: number;
-  title: RegExp;
+  page?: number;
+  title?: RegExp | string;
 };
 
 export abstract class BaseService<schema> {
   abstract readonly _repoObj: BaseRepo<schema>;
 
   // TODO: findAll()
-  async findAll(filter: BaseFilter, fields: string | null = null) {
+  async findAll(filter: BaseFilter) {
     // pagination (10 documents by request )
     const limit = 10;
-    const skip = (filter.page - 1) * limit;
+    const skip = (filter.page! - 1) * limit;
 
     // find all documents that includes title
     if (filter.title) filter.title = new RegExp(`${filter.title}`, 'i');
