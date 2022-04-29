@@ -13,7 +13,7 @@ export abstract class BaseService<schema> {
   async findAll(filter: BaseFilter) {
     // pagination (10 documents by request )
     const limit = 10;
-    const skip = (filter.page! - 1) * limit;
+    const skip = ((filter.page || 1) - 1) * limit;
 
     // find all documents that includes title
     if (filter.title) filter.title = new RegExp(`${filter.title}`, 'i');

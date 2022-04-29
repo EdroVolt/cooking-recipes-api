@@ -7,14 +7,10 @@ export abstract class BaseController<schema> {
 
   // getAll()
   getAll = async (req: Request, res: Response, next: NextFunction) => {
-    const { page, title, ...filter } = req.query || { page: 0 };
+    const filter: any = req.query;
 
     try {
-      const data = await this._serviceObj.findAll({
-        page: +page!,
-        title: title?.toString(),
-        ...filter
-      });
+      const data = await this._serviceObj.findAll(filter);
       res.status(200).json(data);
     } catch (err) {
       next(err);
