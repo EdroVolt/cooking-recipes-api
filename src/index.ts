@@ -4,6 +4,7 @@ import { ErrorMiddleware } from './core/middleware/error.middleware';
 import { BodyParserMiddleware } from './core/middleware/bodyParser.middleware';
 import { MoragnMiddleware } from './core/middleware/morgan.middleware';
 import { ImageUploaderMiddleware } from './core/middleware/imageUploader.middleware';
+import { RecipeRouter } from './routers/Recipe.router';
 
 // -------------- server init ---------------
 const app = new Server();
@@ -17,6 +18,7 @@ app.middleware(new BodyParserMiddleware());
 app.middleware(new MoragnMiddleware());
 
 // -------------- Routers -------------------
+app.route(new RecipeRouter());
 
 // -------------- Err MW --------------------
 app.errorMiddleware(new ErrorMiddleware());
