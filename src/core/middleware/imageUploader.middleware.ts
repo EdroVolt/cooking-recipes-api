@@ -10,7 +10,7 @@ export class ImageUploaderMiddleware implements IMiddleware {
       },
 
       filename: (req, file, cb) => {
-        cb(null, file.originalname);
+        cb(null, ''.replace(/\//g, '-') + file.originalname);
       }
     });
 
