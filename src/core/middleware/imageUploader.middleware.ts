@@ -10,12 +10,7 @@ export class ImageUploaderMiddleware implements IMiddleware {
       },
 
       filename: (req, file, cb) => {
-        cb(
-          null,
-          new Date().toLocaleDateString().replace(/\//g, '-') +
-            '-' +
-            file.originalname
-        );
+        cb(null, file.originalname);
       }
     });
 
